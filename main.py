@@ -8,7 +8,6 @@ def get_json(url_json):
 
 
 if __name__ == '__main__':
-    is_found = False
     travel_type = ['飞机', '火车', '地铁', '长途客车/大巴', '公交车', '出租车', '轮船', '其他公共场所']
     url = 'http://2019ncov.nosugartech.com/data.json'
     print(u'正在联网更新数据，请稍等...')
@@ -18,6 +17,7 @@ if __name__ == '__main__':
         itinerary['t_type'] = travel_type[itinerary['t_type'] - 1]
     while True:
         cntr = 1
+        is_found = False
         query_data = input(u'\n输入您要查询的车次/车牌/航班号/场所名（如需退出，按下Ctrl+C）：')
         for itinerary in data['data']:
             if str(itinerary['t_no']).lower().find(query_data.lower()) is not -1:

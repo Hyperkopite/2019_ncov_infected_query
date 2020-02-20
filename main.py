@@ -16,12 +16,7 @@ def get_json(url_json):
 
 def print_res():
     global cntr, is_found
-    print('\n---------------------------------------------------------------------------------\n' + u'|记录' + str(
-        cntr) + '|\n\n' + u'日期：' + str(itinerary['t_date']) + '\n' + u'车次/车牌/航班号/场所名：' + str(
-        itinerary['t_no']) + '\n' + u'出行类型：' + str(itinerary['t_type']) + '\n' + u'车厢：' + str(
-        itinerary['t_no_sub']) + '\n' + u'出发站：' + str(itinerary['t_pos_start']) + '\n' + u'到达站：' + str(
-        itinerary['t_pos_end']) + '\n' + u'出行描述：' + str(itinerary['t_memo']) + '\n' + u'线索来源：' + str(
-        itinerary['source']))
+    print('\n---------------------------------------------------------------------------------\n' + u'|记录' + str(cntr) + '|\n\n' + u'日期：' + str(itinerary['t_date']) + '\n' + u'车次/车牌/航班号/场所名：' + str(itinerary['t_no']) + '\n' + u'出行类型：' + str(itinerary['t_type']) + '\n' + u'车厢：' + str(itinerary['t_no_sub']) + '\n' + u'出发站：' + str(itinerary['t_pos_start']) + '\n' + u'到达站：' + str(itinerary['t_pos_end']) + '\n' + u'出行描述：' + str(itinerary['t_memo']) + '\n' + u'线索来源：' + str(itinerary['source']))
     cntr += 1
     is_found = True
 
@@ -44,12 +39,9 @@ if __name__ == '__main__':
             if query_data.find('-') is not -1:
                 if str(itinerary['t_date']).find(query_data) is not -1:
                     print_res()
-            elif str(itinerary['t_no']).lower().find(query_data.lower()) is not -1 or str(
-                    itinerary['t_pos_start']).lower().find(query_data.lower()) is not -1 or str(
-                    itinerary['t_pos_end']).lower().find(query_data.lower()) is not -1:
+            elif str(itinerary['t_no']).lower().find(query_data.lower()) is not -1 or str(itinerary['t_pos_start']).lower().find(query_data.lower()) is not -1 or str(itinerary['t_pos_end']).lower().find(query_data.lower()) is not -1:
                 print_res()
         if is_found is False:
             print(u'\n[V] 恭喜您，目前没有相关记录！\n')
         else:
-            print(u'\n---------------------------------------------------------------------------------\n共找到' + str(
-                cntr - 1) + u'条相关记录。\n=================================================================================\n')
+            print(u'\n---------------------------------------------------------------------------------\n共找到' + str(cntr - 1) + u'条相关记录。\n'u'=================================================================================\n')

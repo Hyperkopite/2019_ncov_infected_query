@@ -3,3 +3,4 @@
 ![Alt Text](https://github.com/Hyperkopite/2019ncov_infected_query/blob/master/s1.png)
 ![Alt Text](https://github.com/Hyperkopite/2019ncov_infected_query/blob/master/s2.png)
 ![Alt Text](https://github.com/Hyperkopite/2019ncov_infected_query/blob/master/s3.png)
+![Alt Text](https://github.com/Hyperkopite/2019ncov_infected_query/blob/master/s4.png)

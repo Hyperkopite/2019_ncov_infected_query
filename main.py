@@ -7,8 +7,9 @@ url = 'http://2019ncov.nosugartech.com/data.json'
 latest_time = ''
 cntr = 1
 is_found = False
-delim_line_single = '----------------------------------------------------------------------------------------------------'
-delim_line_double = '===================================================================================================='
+delim_line_single = '-' * 105
+delim_line_double = '=' * 105
+res = []
 
 
 def get_json(url_json):
@@ -16,9 +17,9 @@ def get_json(url_json):
     return resp.json()
 
 
-def print_res():
-    global cntr, is_found
-    print('\n' + delim_line_single + '\n' + u'|记录' + str(cntr) + '|\n\n' + u'日期：' + str(itinerary['t_date']) + '\n' + u'车次/车牌/航班号/场所名：' + str(itinerary['t_no']) + '\n' + u'出行类型：' + str(itinerary['t_type']) + '\n' + u'车厢：' + str(itinerary['t_no_sub']) + '\n' + u'出发站：' + str(itinerary['t_pos_start']) + '\n' + u'到达站：' + str(itinerary['t_pos_end']) + '\n' + u'出行描述：' + str(itinerary['t_memo']) + '\n' + u'线索来源：' + str(itinerary['source']))
+def save_to_res():
+    global cntr, res
+    res.append('\n' + delim_line_single + '\n' + u'|记录' + str(cntr) + '|\n\n' + u'日期：' + str(itinerary['t_date']) + '\n' + u'车次/车牌/航班号/场所名：' + str(itinerary['t_no']) + '\n' + u'出行类型：' + str(itinerary['t_type']) + '\n' + u'车厢：' + str(itinerary['t_no_sub']) + '\n' + u'出发站：' + str(itinerary['t_pos_start']) + '\n' + u'到达站：' + str(itinerary['t_pos_end']) + '\n' + u'出行描述：' + str(itinerary['t_memo']) + '\n' + u'线索来源：' + str(itinerary['source']))
     cntr += 1
 
 
@@ -35,6 +36,7 @@ if __name__ == '__main__':
     while True:
         cntr = 1
         is_found = True
+        res = []
         print(u'\n[!] 支持同时满足多个条件的查询，条件用空格分隔开，时间格式：yyyy-mm-dd/mm-dd；如需退出，按下Ctrl + C')
         query_data = input(u'[?] 输入您要查询的车次/车牌/航班号/场所名/站名/地名/时间/交通工具：').split(' ')
         for itinerary in data['data']:
@@ -44,8 +46,11 @@ if __name__ == '__main__':
                     is_found = False
                     break
             if is_found is True:
-                print_res()
+                save_to_res()
         if cntr == 1:
-            print(u'\n[v] 恭喜您，目前没有相关记录！\n')
+            print(u'\n[v] 没有查找到相关记录！\n')
         else:
-            print(delim_line_single + u'\n共找到' + str(cntr - 1) + u'条相关记录。\n' + delim_line_double + '\n')
+            res.reverse()
+            for item in res:
+                print(item)
+            print(delim_line_single + u'\n共找到' + str(cntr - 1) + u'条相关记录。记录已按时间排序。\n' + delim_line_double + '\n')
